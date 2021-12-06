@@ -3,7 +3,8 @@ import { postData } from "../services/requests";
 const forms = () => {
   const form = document.querySelectorAll("form"),
     inputs = document.querySelectorAll("input"),
-    upload = document.querySelectorAll("[name='upload']");
+    upload = document.querySelectorAll("[name='upload']"),
+    price = document.querySelector(".calc-price");
 
   //   checkNumInputs("input[name='user_phone']");
 
@@ -62,6 +63,9 @@ const forms = () => {
       statusMessage.appendChild(textMessage);
 
       const formData = new FormData(item);
+      if (price.textContent.match(/\d/g)) {
+        formData.append("price", price.textContent);
+      }
       let api;
 
       item.closest(".popup-design") || item.classList.contains("calc_form")
